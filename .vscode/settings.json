@@ -1,0 +1,15 @@
+{
+  "[json]": {
+    "editor.formatOnSave": true // Let Prettier format JSON files
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
