@@ -1,0 +1,26 @@
+{
+  "name": "techyon-blog",
+  "version": "1.0.0",
+  "main": "src/pages/index.tsx",
+  "repository": "https://github.com/TechyonX/blog",
+  "author": "TechyonX",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gatsby": "^2.23.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "lint": "eslint ./src/ --ext .tsx,.ts",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "prettier": {
+    "arrowParens": "avoid"
+  }
+}
