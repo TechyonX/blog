@@ -26,16 +26,28 @@ jobs:
         name: public
         path: public
   
-  # TODO: copy files into server
   deploy:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Copy files
+    - name: Dowload build files
+      uses: actions/download-artifact@v1
       with:
         name: public
+
+    - name: Install required packages
+      run: sudo apt install rsync
+
+    - name: Copy files
+      env:
+        USERNAME: techyonx
+        HOST: techyonx.com
+        REMOTE_PATH: /var/www/techyonx.com/public/
+        SSH_KEY: ${{ secrets.SSH_KEY }}
+        KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
       run: |
-        echo SCP
-        ls public
+        echo $SSH_KEY > /tmp/deploy_rsa
+        echo $KNOWN_HOSTS > /tmp/known_hosts
+        rsync -e 'ssh -i /tmp/deploy_rsa -o "UserKnownHostsFile=/tmp/known_hosts"' -a --delete public/ $USERNAME@$HOST:$REMOTE_PATH
