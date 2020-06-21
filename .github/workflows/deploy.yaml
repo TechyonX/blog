@@ -31,11 +31,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Copy files
     - uses: actions/checkout@v2
+
+    - name: Copy files
       with:
         name: public
-
       run: |
         echo SCP
         ls public
