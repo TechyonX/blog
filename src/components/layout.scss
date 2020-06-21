@@ -1,7 +1,9 @@
+@import "../styles/global";
+
 header {
-  background-color: red;
+  background-color: $body-font-color;
 }
 
 footer {
-  background-color: green;
+  background-color: $dark-gray;
 }
