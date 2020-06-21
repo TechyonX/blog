@@ -12,7 +12,7 @@ module.exports = {
     "prettier/react",
     "prettier/@typescript-eslint",
   ],
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
