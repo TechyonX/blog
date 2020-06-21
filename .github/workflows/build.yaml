@@ -21,4 +21,3 @@ jobs:
       run: |
         echo Building...
         yarn run build --prefix-paths
-        ls public
