@@ -1,0 +1,41 @@
+name: deploy
+
+# Trigger on push
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install modules
+      run: |
+        echo Installing...
+        yarn install
+        
+    - name: Build
+      run: |
+        echo Building...
+        yarn run build --prefix-paths
+        ls public
+      with:
+        name: public
+        path: public
+  
+  # TODO: copy files into server
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copy files
+    - uses: actions/checkout@v2
+      with:
+        name: public
+
+      run: |
+      echo SCP
+      ls public
