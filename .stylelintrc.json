@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      "declarations",
+      "rules",
+      "at-rules"
+    ],
+    "order/properties-alphabetical-order": true,
+    "max-nesting-depth": 2,
+    "string-quotes": "double"
+  }
+}
