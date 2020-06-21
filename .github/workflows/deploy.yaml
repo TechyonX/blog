@@ -30,7 +30,7 @@ jobs:
   
   deploy:
     needs: build
-    
+
     runs-on: ubuntu-latest
 
     steps:
@@ -54,4 +54,6 @@ jobs:
       run: |
         echo $SSH_KEY > /tmp/deploy_rsa
         echo $KNOWN_HOSTS > /tmp/known_hosts
+        chmod 600 /tmp/deploy_rsa
+        chmod 644 /tmp/known_hosts
         rsync -e 'ssh -i /tmp/deploy_rsa -o "UserKnownHostsFile=/tmp/known_hosts"' -a --delete public/ $USERNAME@$HOST:$REMOTE_PATH
