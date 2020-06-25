@@ -46,9 +46,9 @@ jobs:
 
     - name: Copy files
       env:
-        USERNAME: techyonx
-        HOST: techyonx.com
-        REMOTE_PATH: /var/www/techyonx.com/public/
+        USERNAME: ${{ secrets.USERNAME }}
+        HOST: ${{ secrets.HOST }}
+        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
         SSH_KEY: ${{ secrets.SSH_KEY }}
         KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
       run: |
