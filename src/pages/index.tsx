@@ -1,22 +1,54 @@
 import React from "react";
 import Layout from "../components/layout";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
 export default function Home() {
+  const data = useStaticQuery(graphql`
+    query {
+      allStrapiPost {
+        edges {
+          node {
+            strapiId
+            name
+            slug
+          }
+        }
+      }
+      allStrapiTag {
+        edges {
+          node {
+            strapiId
+            name
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Layout>
       <h1>Hello TechyonX!</h1>
-      <div className="grid-x">
-        <div className="cell">full width cell</div>
-        <div className="cell">full width cell</div>
-      </div>
-      <div className="grid-x">
-        <div className="cell small-6">6 cells</div>
-        <div className="cell small-6">6 cells</div>
-      </div>
-      <div className="grid-x">
-        <div className="cell medium-6 large-4">12/6/4 cells</div>
-        <div className="cell medium-6 large-8">12/6/8 cells</div>
-      </div>
+      <h3>Posts:</h3>
+      <ul>
+        {data.allStrapiPost.edges.map(post => {
+          return (
+            <li key={post.node.strapiId}>
+              <Link to={`/post/${post.node.strapiId}`}>{post.node.name}</Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      <h3>Tags:</h3>
+      <ul>
+        {data.allStrapiTag.edges.map(tag => {
+          return (
+            <li key={tag.node.strapiId}>
+              <Link to={`/tag/${tag.node.strapiId}`}>{tag.node.name}</Link>
+            </li>
+          );
+        })}
+      </ul>
     </Layout>
   );
 }
