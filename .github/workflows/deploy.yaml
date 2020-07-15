@@ -2,6 +2,8 @@ name: deploy
 
 # Trigger on push
 on:
+  repository_dispatch:
+    types: [ entry_change ]
   push:
     branches: [ master ]
 
