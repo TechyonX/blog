@@ -9,7 +9,7 @@ export default function Home() {
         edges {
           node {
             strapiId
-            name
+            title
             slug
           }
         }
@@ -33,7 +33,7 @@ export default function Home() {
         {data.allStrapiPost.edges.map(post => {
           return (
             <li key={post.node.strapiId}>
-              <Link to={`/post/${post.node.strapiId}`}>{post.node.name}</Link>
+              <Link to={`/post/${post.node.strapiId}`}>{post.node.title}</Link>
             </li>
           );
         })}
