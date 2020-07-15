@@ -18,6 +18,8 @@ jobs:
         yarn install
         
     - name: Build
+      env:
+        API_URL: ${{ secrets.API_URL }}
       run: |
         echo Building...
         yarn run build --prefix-paths
