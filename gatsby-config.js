@@ -9,6 +9,7 @@ module.exports = {
     author: `TechyonX`,
   },
   plugins: [
+    `gatsby-plugin-react-head`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-strapi`,

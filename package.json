@@ -30,9 +30,11 @@
   },
   "dependencies": {
     "gatsby": "^2.23.7",
+    "gatsby-plugin-react-head": "^1.1.0",
     "gatsby-source-strapi": "^0.0.12",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-head": "^3.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.3.0",

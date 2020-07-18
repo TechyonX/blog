@@ -26,29 +26,35 @@ export default function Home() {
   `);
 
   return (
-    <Layout>
-      <h1>Hello TechyonX!</h1>
-      <h3>Posts:</h3>
-      <ul>
-        {data.allStrapiPost.edges.map(post => {
-          return (
-            <li key={post.node.strapiId}>
-              <Link to={`/post/${post.node.strapiId}`}>{post.node.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
+    <Layout seoProps={{ title: "Нүүр хуудас" }}>
+      <main className="grid-container">
+        <div className="cell shrink">
+          <h1>Тавтай морил!</h1>
+          <h3>Нийтлэлүүд:</h3>
+          <ul>
+            {data.allStrapiPost.edges.map(post => {
+              return (
+                <li key={post.node.strapiId}>
+                  <Link to={`/post/${post.node.strapiId}`}>
+                    {post.node.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
-      <h3>Tags:</h3>
-      <ul>
-        {data.allStrapiTag.edges.map(tag => {
-          return (
-            <li key={tag.node.strapiId}>
-              <Link to={`/tag/${tag.node.strapiId}`}>{tag.node.name}</Link>
-            </li>
-          );
-        })}
-      </ul>
+          <h3>Төрлүүд:</h3>
+          <ul>
+            {data.allStrapiTag.edges.map(tag => {
+              return (
+                <li key={tag.node.strapiId}>
+                  <Link to={`/tag/${tag.node.strapiId}`}>{tag.node.name}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </main>
     </Layout>
   );
 }
