@@ -3,61 +3,67 @@ name: deploy
 # Trigger on push
 on:
   repository_dispatch:
-    types: [ entry_change ]
+    types: [entry_change]
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install modules
-      run: |
-        echo Installing...
-        yarn install
-        
-    - name: Build
-      env:
-        API_URL: ${{ secrets.API_URL }}
-      run: |
-        echo Building...
-        yarn run build --prefix-paths
+      - name: Install modules
+        run: |
+          echo Installing...
+          yarn install
 
-    - name: Upload built project
-      uses: actions/upload-artifact@v1
-      with:
-        name: public
-        path: public
-  
+      - name: Lint
+        run: |
+          echo Running lints...
+          yarn lint
+          yarn lint-style
+
+      - name: Build
+        env:
+          API_URL: ${{ secrets.API_URL }}
+        run: |
+          echo Building...
+          yarn run build --prefix-paths
+
+      - name: Upload built project
+        uses: actions/upload-artifact@v1
+        with:
+          name: public
+          path: public
+
   deploy:
     needs: build
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Dowload build files
-      uses: actions/download-artifact@v1
-      with:
-        name: public
+      - name: Dowload build files
+        uses: actions/download-artifact@v1
+        with:
+          name: public
 
-    - name: Install required packages
-      run: sudo apt install rsync
+      - name: Install required packages
+        run: sudo apt install rsync
 
-    - name: Copy files
-      env:
-        USERNAME: ${{ secrets.USERNAME }}
-        HOST: ${{ secrets.HOST }}
-        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
-        SSH_KEY: ${{ secrets.SSH_KEY }}
-        KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
-      run: |
-        echo "$SSH_KEY" > /tmp/deploy_rsa
-        echo "$KNOWN_HOSTS" > /tmp/known_hosts
-        chmod 600 /tmp/deploy_rsa
-        chmod 644 /tmp/known_hosts
-        rsync -e 'ssh -i /tmp/deploy_rsa -o "UserKnownHostsFile=/tmp/known_hosts"' -a --delete public/ $USERNAME@$HOST:$REMOTE_PATH
+      - name: Copy files
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          HOST: ${{ secrets.HOST }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+        run: |
+          echo "$SSH_KEY" > /tmp/deploy_rsa
+          echo "$KNOWN_HOSTS" > /tmp/known_hosts
+          chmod 600 /tmp/deploy_rsa
+          chmod 644 /tmp/known_hosts
+          rsync -e 'ssh -i /tmp/deploy_rsa -o "UserKnownHostsFile=/tmp/known_hosts"' -a --delete public/ $USERNAME@$HOST:$REMOTE_PATH
