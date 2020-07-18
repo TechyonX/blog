@@ -1,17 +1,34 @@
 import React from "react";
-import "./layout.scss";
+import Seo, { SeoProps } from "./seo";
+
+import logo from "../assets/images/black.png";
+import style from "./layout.module.scss";
 
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element;
+  seoProps?: SeoProps;
 }
 
-function Layout({ children }: LayoutProps) {
+function Header() {
   return (
-    <>
-      <header>header</header>
-      <main>{children}</main>
-      <footer>footer</footer>
-    </>
+    <header className="cell">
+      <img src={logo} height="40px" width="auto" alt="TechyonX logo" />
+    </header>
+  );
+}
+
+function Footer() {
+  return <footer className="cell">2020 TechyonX</footer>;
+}
+
+function Layout({ children, seoProps }: LayoutProps) {
+  return (
+    <div className={`grid-y ${style.content}`}>
+      <Seo {...seoProps} />
+      <Header />
+      <>{children}</>
+      <Footer />
+    </div>
   );
 }
 
