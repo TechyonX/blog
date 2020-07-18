@@ -1,9 +1,8 @@
 import React from "react";
 import Seo, { SeoProps } from "./seo";
 
-import Logo from "../assets/images/black.png";
-
-import "./layout.module.scss";
+import logo from "../assets/images/black.png";
+import style from "./layout.module.scss";
 
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element;
@@ -13,7 +12,7 @@ interface LayoutProps {
 function Header() {
   return (
     <header className="cell">
-      <img src={Logo} height="40px" width="auto" alt="TechyonX logo" />
+      <img src={logo} height="40px" width="auto" alt="TechyonX logo" />
     </header>
   );
 }
@@ -24,7 +23,7 @@ function Footer() {
 
 function Layout({ children, seoProps }: LayoutProps) {
   return (
-    <div className="grid-y">
+    <div className={`grid-y ${style.content}`}>
       <Seo {...seoProps} />
       <Header />
       <>{children}</>

@@ -1,8 +1,17 @@
 @import "../styles/global";
 
-header,
-footer {
+footer,
+header {
   @include flex;
   @include flex-align(center, middle);
   @include margin(1, null, 1, null);
+}
+
+main {
+  flex-grow: 1;
+}
+
+.content {
+  min-height: 100vh;
+  overflow: auto;
 }
