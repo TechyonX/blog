@@ -2,8 +2,6 @@ name: build
 
 # Trigger on pull requests
 on:
-  pull_request:
-    branches: [master]
   push:
     branches:
       - '*'
