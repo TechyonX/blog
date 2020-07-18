@@ -14,21 +14,24 @@ export interface SeoProps {
   desc?: string;
 }
 
-export default function Seo({ type, title = "Блог", image, desc }: SeoProps) {
+export default function Seo({
+  type = "website",
+  title = "Блог",
+  image,
+  desc = "Шинжлэх ухаан, технологийн блог.",
+}: SeoProps) {
   return (
     <>
-      <Title>TechyonX - {title}</Title>
+      <Title>{title} - TechyonX</Title>
       <Meta name="description" content={desc} />
       <Meta name="theme-color" content="#000000" />
       <Link rel="icon" type="image/png" sizes="16x16" href={favicon} />
-      <Meta property="og:type" content={type || "website"} />
-      <Meta property="og:title" content={title} />
-      <Meta
-        property="og:description"
-        content={desc || "Шинжлэх ухаан, технологийн блог."}
-      />
+      <Meta property="og:title" content={`${title} - TechyonX`} />
+      <Meta property="og:type" content={type} />
+      <Meta property="og:description" content={desc} />
       <Meta property="og:url" content="https://techyonx.com/" />
       <Meta property="og:image" content={image?.url || special} />
+      <Meta property="og:image:alt" content="TechyonX" />
       <Meta property="og:image:width" content={`${image?.width || 460}`} />
       <Meta property="og:image:height" content={`${image?.height || 460}`} />
     </>
