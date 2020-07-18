@@ -25,7 +25,8 @@
     "*.{js,jsx,ts,tsx}": [
       "yarn lint",
       "yarn run prettier --write"
-    ]
+    ],
+    "*.scss": "yarn lint-style"
   },
   "dependencies": {
     "gatsby": "^2.23.7",

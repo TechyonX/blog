@@ -3,23 +3,29 @@ name: build
 # Trigger on pull requests
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install modules
-      run: |
-        echo Installing...
-        yarn install
-        
-    - name: Build
-      env:
-        API_URL: ${{ secrets.API_URL }}
-      run: |
-        echo Building...
-        yarn run build --prefix-paths
+      - name: Install modules
+        run: |
+          echo Installing...
+          yarn install
+
+      - name: Lint
+        run: |
+          echo Running lints...
+          yarn lint
+          yarn lint-style
+
+      - name: Build
+        env:
+          API_URL: ${{ secrets.API_URL }}
+        run: |
+          echo Building...
+          yarn run build --prefix-paths
