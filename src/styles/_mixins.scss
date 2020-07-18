@@ -1,0 +1,28 @@
+@mixin font($family, $style: normal, $weight: normal) {
+  font: {
+    family: $family;
+    style: $style;
+    weight: $weight;
+  }
+}
+
+$scrollbar: #5a5a5a;
+$scrollbar-bg: #2a2a2a;
+
+@mixin scrollbar($size) {
+  &::-webkit-scrollbar {
+    max-height: $size;
+    max-width: $size;
+    width: auto;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $scrollbar-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar;
+    border: 1px solid $scrollbar-bg;
+    border-radius: $size/2;
+  }
+}
