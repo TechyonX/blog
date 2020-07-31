@@ -1,30 +1,39 @@
 import React from "react";
 import Layout from "../components/layout";
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, graphql } from "gatsby";
 
-export default function Home() {
-  const data = useStaticQuery(graphql`
-    query {
-      allStrapiPost {
-        edges {
-          node {
-            strapiId
-            title
-            slug
-          }
-        }
-      }
-      allStrapiTag {
-        edges {
-          node {
-            strapiId
-            name
-          }
-        }
-      }
-    }
-  `);
+type Post = {
+  strapiId: number;
+  slug: string;
+  title: string;
+};
 
+type Tag = {
+  strapiId: number;
+  slug: string;
+  name: string;
+};
+
+export default function Home({
+  data,
+}: {
+  data: {
+    allStrapiPost: {
+      edges: [
+        {
+          node: Post;
+        }
+      ];
+    };
+    allStrapiTag: {
+      edges: [
+        {
+          node: Tag;
+        }
+      ];
+    };
+  };
+}) {
   return (
     <Layout seoProps={{ title: "Нүүр хуудас" }}>
       <main className="grid-container">
@@ -32,12 +41,10 @@ export default function Home() {
           <h1>Тавтай морил!</h1>
           <h3>Нийтлэлүүд:</h3>
           <ul>
-            {data.allStrapiPost.edges.map(post => {
+            {data.allStrapiPost.edges.map((post: { node: Post }) => {
               return (
                 <li key={post.node.strapiId}>
-                  <Link to={`/post/${post.node.strapiId}`}>
-                    {post.node.title}
-                  </Link>
+                  <Link to={`/post/${post.node.slug}`}>{post.node.title}</Link>
                 </li>
               );
             })}
@@ -45,10 +52,10 @@ export default function Home() {
 
           <h3>Төрлүүд:</h3>
           <ul>
-            {data.allStrapiTag.edges.map(tag => {
+            {data.allStrapiTag.edges.map((tag: { node: Tag }) => {
               return (
                 <li key={tag.node.strapiId}>
-                  <Link to={`/tag/${tag.node.strapiId}`}>{tag.node.name}</Link>
+                  <Link to={`/tag/${tag.node.slug}`}>{tag.node.name}</Link>
                 </li>
               );
             })}
@@ -58,3 +65,25 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const query = graphql`
+  query {
+    allStrapiPost {
+      edges {
+        node {
+          strapiId
+          title
+          slug
+        }
+      }
+    }
+    allStrapiTag {
+      edges {
+        node {
+          strapiId
+          name
+        }
+      }
+    }
+  }
+`;
