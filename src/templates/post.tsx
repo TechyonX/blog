@@ -29,8 +29,8 @@ export default function Post({ data }: { data: { strapiPost: Post } }) {
 }
 
 export const query = graphql`
-  {
-    strapiPost(slug: { eq: "turshilt" }) {
+  query Post($slug: String!) {
+    strapiPost(slug: { eq: $slug }) {
       strapiId
       title
       excerpt
