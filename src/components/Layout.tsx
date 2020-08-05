@@ -1,8 +1,8 @@
 import React from "react";
-import Seo, { SeoProps } from "./seo";
+import Seo, { SeoProps } from "./Seo";
 
 import logo from "../assets/images/black.png";
-import style from "./layout.module.scss";
+import style from "./Layout.module.scss";
 
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element;
