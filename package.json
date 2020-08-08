@@ -34,7 +34,8 @@
     "gatsby-source-strapi": "^0.0.12",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-head": "^3.3.0"
+    "react-head": "^3.3.0",
+    "react-markdown": "^4.3.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.3.0",

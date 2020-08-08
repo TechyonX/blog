@@ -68,6 +68,4 @@ h6 {
   outline: none;
 }
 
-@include foundation-xy-grid-classes;
-@include foundation-flex-classes;
-@include foundation-visibility-classes;
+@include foundation-everything;

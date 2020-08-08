@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
+import ReactMarkdown from "react-markdown";
 
 type Post = {
   strapiId: number;
@@ -19,7 +20,7 @@ export default function Post({ data }: { data: { strapiPost: Post } }) {
           <div className="cell auto">
             <p>{data.strapiPost.created_at}</p>
             <h1>{data.strapiPost.title}</h1>
-            <p>{data.strapiPost.content}</p>
+            <ReactMarkdown source={data.strapiPost.content} />
             <p>{data.strapiPost.status}</p>
           </div>
         </div>
