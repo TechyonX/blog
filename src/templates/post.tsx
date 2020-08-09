@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
+import Img, { FluidObject } from "gatsby-image";
 import ReactMarkdown from "react-markdown";
 
 type Post = {
@@ -10,6 +11,11 @@ type Post = {
   created_at: Date;
   content: string;
   status: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
 };
 
 export default function Post({ data }: { data: { strapiPost: Post } }) {
@@ -20,6 +26,9 @@ export default function Post({ data }: { data: { strapiPost: Post } }) {
           <div className="cell auto">
             <p>{data.strapiPost.created_at}</p>
             <h1>{data.strapiPost.title}</h1>
+            {data.strapiPost.image ? (
+              <Img fluid={data.strapiPost.image.childImageSharp.fluid} />
+            ) : null}
             <ReactMarkdown source={data.strapiPost.content} />
             <p>{data.strapiPost.status}</p>
           </div>
@@ -37,6 +46,13 @@ export const query = graphql`
       excerpt
       content
       status
+      image {
+        childImageSharp {
+          fluid(maxWidth: 960) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
       created_at(formatString: "YYYY-MM-DD")
     }
   }

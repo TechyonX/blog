@@ -30,8 +30,11 @@
   },
   "dependencies": {
     "gatsby": "^2.23.7",
+    "gatsby-image": "^2.4.14",
     "gatsby-plugin-react-head": "^1.1.0",
+    "gatsby-plugin-sharp": "^2.6.25",
     "gatsby-source-strapi": "^0.0.12",
+    "gatsby-transformer-sharp": "^2.5.12",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-head": "^3.3.0",

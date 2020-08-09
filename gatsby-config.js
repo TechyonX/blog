@@ -19,5 +19,7 @@ module.exports = {
         contentTypes: [`post`, `tag`],
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 };
