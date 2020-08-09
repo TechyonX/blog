@@ -1,11 +1,17 @@
 import React from "react";
 import Layout from "../components/Layout";
+import Img, { FluidObject } from "gatsby-image";
 import { Link, graphql } from "gatsby";
 
 type Post = {
   strapiId: number;
   slug: string;
   title: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
 };
 
 type Tag = {
@@ -44,6 +50,9 @@ export default function Home({
             {data.allStrapiPost.edges.map((post: { node: Post }) => {
               return (
                 <li key={post.node.strapiId}>
+                  {post.node.image ? (
+                    <Img fluid={post.node.image.childImageSharp.fluid} />
+                  ) : null}
                   <Link to={`/post/${post.node.slug}`}>{post.node.title}</Link>
                 </li>
               );
@@ -74,6 +83,13 @@ export const query = graphql`
           strapiId
           title
           slug
+          image {
+            childImageSharp {
+              fluid(maxWidth: 480) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }
