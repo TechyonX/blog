@@ -1,7 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout";
-import Img, { FluidObject } from "gatsby-image";
+import { FluidObject } from "gatsby-image";
 import { Link, graphql } from "gatsby";
+import PostCard from "../components/PostCard";
 
 type Post = {
   strapiId: number;
@@ -46,18 +47,11 @@ export default function Home({
         <div className="cell shrink">
           <h1>Тавтай морил!</h1>
           <h3>Нийтлэлүүд:</h3>
-          <ul>
+          <div className="grid-x">
             {data.allStrapiPost.edges.map((post: { node: Post }) => {
-              return (
-                <li key={post.node.strapiId}>
-                  {post.node.image ? (
-                    <Img fluid={post.node.image.childImageSharp.fluid} />
-                  ) : null}
-                  <Link to={`/post/${post.node.slug}`}>{post.node.title}</Link>
-                </li>
-              );
+              return <PostCard post={post.node} key={post.node.strapiId} />;
             })}
-          </ul>
+          </div>
 
           <h3>Төрлүүд:</h3>
           <ul>
