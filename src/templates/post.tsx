@@ -36,6 +36,7 @@ function TestComponent() {
 }
 
 export default function Post({ data }: { data: { post: Post } }) {
+  const toc = data.post.childMdx.tableOfContents;
   return (
     <Layout>
       <main className="grid-container">
@@ -46,9 +47,9 @@ export default function Post({ data }: { data: { post: Post } }) {
             {data.post.image ? (
               <Img fluid={data.post.image.childImageSharp.fluid} />
             ) : null}
-            {data.post.childMdx.tableOfContents ? (
+            {toc.items !== undefined ? (
               <ul>
-                {data.post.childMdx.tableOfContents.items.map(i => (
+                {toc.items.map(i => (
                   <li key={i.url}>
                     <a href={i.url} key={i.url}>
                       {i.title}
