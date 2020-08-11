@@ -19,6 +19,22 @@ module.exports = {
         contentTypes: [`post`, `tag`],
       },
     },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images-anywhere`,
+            options: {
+              maxWidth: 960,
+            },
+          },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+          },
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
   ],
