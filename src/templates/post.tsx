@@ -14,7 +14,9 @@ type Post = {
   status: string;
   childMdx: {
     body: string;
-    tableOfContents: string;
+    tableOfContents: {
+      items: [{ url: string; title: string }];
+    };
     timeToRead: number;
     wordCount: {
       paragraphs: number;
@@ -43,6 +45,17 @@ export default function Post({ data }: { data: { post: Post } }) {
             <h1>{data.post.title}</h1>
             {data.post.image ? (
               <Img fluid={data.post.image.childImageSharp.fluid} />
+            ) : null}
+            {data.post.childMdx.tableOfContents ? (
+              <ul>
+                {data.post.childMdx.tableOfContents.items.map(i => (
+                  <li key={i.url}>
+                    <a href={i.url} key={i.url}>
+                      {i.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             ) : null}
             <MDXProvider components={{ TestComponent }}>
               <MDXRenderer>{data.post.childMdx.body}</MDXRenderer>
