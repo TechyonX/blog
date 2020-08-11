@@ -26,7 +26,20 @@ module.exports = {
           {
             resolve: `gatsby-remark-images-anywhere`,
             options: {
-              maxWidth: 800,
+              maxWidth: 960,
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images-anywhere`,
+            options: {
+              maxWidth: 960,
             },
           },
         ],

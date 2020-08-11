@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import Img, { FluidObject } from "gatsby-image";
+import { MDXProvider } from "@mdx-js/react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 // import ReactMarkdown from "react-markdown";
 
 type Post = {
@@ -21,12 +23,26 @@ type Post = {
       words: number;
     };
   };
+  childMdx: {
+    body: string;
+    tableOfContents: string;
+    timeToRead: number;
+    wordCount: {
+      paragraphs: number;
+      sentences: number;
+      words: number;
+    };
+  };
   image: {
     childImageSharp: {
       fluid: FluidObject;
     };
   };
 };
+
+function TestComponent() {
+  return <code>Hello World!</code>;
+}
 
 export default function Post({ data }: { data: { post: Post } }) {
   return (
@@ -40,20 +56,19 @@ export default function Post({ data }: { data: { post: Post } }) {
               <Img fluid={data.post.image.childImageSharp.fluid} />
             ) : null}
             {/* <ReactMarkdown source={data.post.content} /> */}
-            <div
+            {/* <div
               dangerouslySetInnerHTML={{
                 __html: data.post.childMarkdownRemark.html,
               }}
-            ></div>
-            {data.post.childMarkdownRemark.tableOfContents}
-            <p>Time to read: {data.post.childMarkdownRemark.timeToRead}</p>
-            <p>
-              Paragraphs: {data.post.childMarkdownRemark.wordCount.paragraphs}
-            </p>
-            <p>
-              Sentences: {data.post.childMarkdownRemark.wordCount.sentences}
-            </p>
-            <p>Words: {data.post.childMarkdownRemark.wordCount.words}</p>
+            ></div> */}
+            <MDXProvider components={{ TestComponent }}>
+              <MDXRenderer>{data.post.childMdx.body}</MDXRenderer>
+            </MDXProvider>
+            {/* {data.post.childMarkdownRemark.tableOfContents} */}
+            <p>Time to read: {data.post.childMdx.timeToRead}</p>
+            <p>Paragraphs: {data.post.childMdx.wordCount.paragraphs}</p>
+            <p>Sentences: {data.post.childMdx.wordCount.sentences}</p>
+            <p>Words: {data.post.childMdx.wordCount.words}</p>
             <p>{data.post.status}</p>
           </div>
         </div>
@@ -72,6 +87,16 @@ export const query = graphql`
       status
       childMarkdownRemark {
         html
+        tableOfContents
+        timeToRead
+        wordCount {
+          paragraphs
+          sentences
+          words
+        }
+      }
+      childMdx {
+        body
         tableOfContents
         timeToRead
         wordCount {
