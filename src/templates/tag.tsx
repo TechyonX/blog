@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 import PostCard from "../components/PostCard";
 
 type Post = {
+  id: number;
   strapiId: number;
   slug: string;
   title: string;
@@ -19,26 +20,14 @@ type Tag = {
   strapiId: number;
   slug: string;
   name: string;
+  posts: [Post];
 };
 
-export default function Home({
+export default function Tag({
   data,
 }: {
   data: {
-    allStrapiPost: {
-      edges: [
-        {
-          node: Post;
-        }
-      ];
-    };
-    allStrapiTag: {
-      edges: [
-        {
-          node: Tag;
-        }
-      ];
-    };
+    strapiTag: Tag;
   };
 }) {
   return (
@@ -46,10 +35,12 @@ export default function Home({
       <main className="grid-container">
         <div className="cell shrink">
           <h1>Тавтай морил!</h1>
-          <h3>Нийтлэлүүд:</h3>
+          <p>Tag: {data.strapiTag.name}</p>
+          <h3>Нийтлэлүүд: {data.strapiTag.posts.length}</h3>
           <div className="grid-x">
-            {data.allStrapiPost.edges.map((post: { node: Post }) => {
-              return <PostCard post={post.node} key={post.node.strapiId} />;
+            {data.strapiTag.posts.map((post: Post) => {
+              post["strapiId"] = post.id;
+              return <PostCard post={post} key={post.strapiId} />;
             })}
           </div>
         </div>
@@ -59,26 +50,23 @@ export default function Home({
 }
 
 export const query = graphql`
-  query postAndTag($slug: String!) {
-    allStrapiPost(filter: { tags: { elemMatch: { slug: { eq: $slug } } } }) {
-      edges {
-        node {
-          strapiId
-          title
-          slug
-          image {
-            childImageSharp {
-              fluid(maxWidth: 480) {
-                ...GatsbyImageSharpFluid
-              }
+  query tagAndPost($slug: String!) {
+    strapiTag(slug: { eq: $slug }) {
+      name
+      slug
+      strapiId
+      posts {
+        id
+        title
+        slug
+        image {
+          childImageSharp {
+            fluid(maxWidth: 480) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
       }
-    }
-    strapiTag(slug: { eq: $slug }) {
-      strapiId
-      name
     }
   }
 `;

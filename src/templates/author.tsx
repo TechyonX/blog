@@ -23,7 +23,7 @@ type Author = {
   posts: [Post];
 };
 
-export default function Home({
+export default function Author({
   data,
 }: {
   data: {
