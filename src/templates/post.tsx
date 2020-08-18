@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img, { FluidObject } from "gatsby-image";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
@@ -24,6 +24,10 @@ type Post = {
       words: number;
     };
   };
+  author: {
+    id: number;
+    username: string;
+  };
   image: {
     childImageSharp: {
       fluid: FluidObject;
@@ -44,10 +48,10 @@ export default function Post({ data }: { data: { post: Post } }) {
           <div className="cell auto">
             <p>{data.post.created_at}</p>
             <h1>{data.post.title}</h1>
-            {data.post.image ? (
+            {data.post.image !== null ? (
               <Img fluid={data.post.image.childImageSharp.fluid} />
             ) : null}
-            {toc.items !== undefined ? (
+            {Object.keys(toc).length > 0 ? (
               <ul>
                 {toc.items.map(i => (
                   <li key={i.url}>
@@ -66,6 +70,16 @@ export default function Post({ data }: { data: { post: Post } }) {
             <p>Sentences: {data.post.childMdx.wordCount.sentences}</p>
             <p>Words: {data.post.childMdx.wordCount.words}</p>
             <p>{data.post.status}</p>
+            <p>
+              Author:{" "}
+              {data.post.author !== null ? (
+                <Link to={`/author/${data.post.author.username}`}>
+                  {data.post.author.username}
+                </Link>
+              ) : (
+                <span>Null</span>
+              )}
+            </p>
           </div>
         </div>
       </main>
@@ -97,6 +111,10 @@ export const query = graphql`
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      author {
+        id
+        username
       }
       created_at(formatString: "YYYY-MM-DD")
     }

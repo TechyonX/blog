@@ -23,6 +23,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allStrapiUser {
+        edges {
+          node {
+            username
+          }
+        }
+      }
     }
   `);
 
@@ -41,6 +48,15 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/tag.tsx`),
       context: {
         slug: node.slug,
+      },
+    });
+  });
+  result.data.allStrapiUser.edges.forEach(({ node }) => {
+    createPage({
+      path: `author/${node.username}`,
+      component: path.resolve(`./src/templates/author.tsx`),
+      context: {
+        username: node.username,
       },
     });
   });
