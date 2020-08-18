@@ -16,6 +16,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allStrapiTag {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `);
 
@@ -23,6 +30,15 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `post/${node.slug}`,
       component: path.resolve(`./src/templates/post.tsx`),
+      context: {
+        slug: node.slug,
+      },
+    });
+  });
+  result.data.allStrapiTag.edges.forEach(({ node }) => {
+    createPage({
+      path: `tag/${node.slug}`,
+      component: path.resolve(`./src/templates/tag.tsx`),
       context: {
         slug: node.slug,
       },

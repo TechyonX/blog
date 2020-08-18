@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { FluidObject } from "gatsby-image";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import PostCard from "../components/PostCard";
 
 type Post = {
@@ -52,17 +52,6 @@ export default function Home({
               return <PostCard post={post.node} key={post.node.strapiId} />;
             })}
           </div>
-
-          <h3>Төрлүүд:</h3>
-          <ul>
-            {data.allStrapiTag.edges.map((tag: { node: Tag }) => {
-              return (
-                <li key={tag.node.strapiId}>
-                  <Link to={`/tag/${tag.node.slug}`}>{tag.node.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </main>
     </Layout>
@@ -70,8 +59,8 @@ export default function Home({
 }
 
 export const query = graphql`
-  query {
-    allStrapiPost {
+  query postAndTag($slug: String!) {
+    allStrapiPost(filter: { tags: { elemMatch: { slug: { eq: $slug } } } }) {
       edges {
         node {
           strapiId
@@ -87,14 +76,9 @@ export const query = graphql`
         }
       }
     }
-    allStrapiTag {
-      edges {
-        node {
-          strapiId
-          name
-          slug
-        }
-      }
+    strapiTag(slug: { eq: $slug }) {
+      strapiId
+      name
     }
   }
 `;
