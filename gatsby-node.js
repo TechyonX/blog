@@ -16,6 +16,20 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allStrapiTag {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      allStrapiUser {
+        edges {
+          node {
+            username
+          }
+        }
+      }
     }
   `);
 
@@ -25,6 +39,24 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/post.tsx`),
       context: {
         slug: node.slug,
+      },
+    });
+  });
+  result.data.allStrapiTag.edges.forEach(({ node }) => {
+    createPage({
+      path: `tag/${node.slug}`,
+      component: path.resolve(`./src/templates/tag.tsx`),
+      context: {
+        slug: node.slug,
+      },
+    });
+  });
+  result.data.allStrapiUser.edges.forEach(({ node }) => {
+    createPage({
+      path: `author/${node.username}`,
+      component: path.resolve(`./src/templates/author.tsx`),
+      context: {
+        username: node.username,
       },
     });
   });

@@ -16,7 +16,7 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL,
         queryLimit: 1000, // Default to 100
-        contentTypes: [`post`, `tag`],
+        contentTypes: [`post`, `tag`, `user`],
       },
     },
     {
