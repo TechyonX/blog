@@ -16,45 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v19
+        id: vercel-deployment
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-modules-
-      
-      - name: Gatsby Cache Folder
-        uses: actions/cache@v2
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-gatsby
-          restore-keys: |
-            ${{ runner.os }}-cache-gatsby
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          vercel-args: '-b API_URL=${{ secrets.API_URL }} -b GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true'
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
+          working-directory: ./
 
-      - name: Gatsby Public Folder
-        uses: actions/cache@v2
-        with:
-          path: public/
-          key: ${{ runner.os }}-public-gatsby
-          restore-keys: |
-            ${{ runner.os }}-public-gatsby
-
-      - name: Install node modules
+      - name: Build log
+        if: ${{ always() }}
         run: |
-          echo Installing node modules...
-          yarn install
-
-      - name: Lint
-        run: |
-          echo Running lints...
-          yarn lint
-          yarn lint-style
-
-      - name: Build
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-        run: |
-          echo Building...
-          yarn run build --prefix-paths --log-pages
+          vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.vercel-deployment.outputs.preview-url }}

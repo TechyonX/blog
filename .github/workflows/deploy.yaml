@@ -14,81 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v19
+        id: vercel-deployment
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-modules-
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          vercel-args: '--prod -b API_URL=${{ secrets.API_URL }} -b GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true'
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
+          working-directory: ./
 
-      - name: Gatsby Cache Folder
-        uses: actions/cache@v2
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-gatsby
-          restore-keys: |
-            ${{ runner.os }}-cache-gatsby
-
-      - name: Gatsby Public Folder
-        uses: actions/cache@v2
-        with:
-          path: public/
-          key: ${{ runner.os }}-public-gatsby
-          restore-keys: |
-            ${{ runner.os }}-public-gatsby
-
-      - name: Install node modules
+      - name: Build log
+        if: ${{ always() }}
         run: |
-          echo Installing node modules...
-          yarn install
-
-      - name: Lint
-        run: |
-          echo Running lints...
-          yarn lint
-          yarn lint-style
-
-      - name: Build
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-        run: |
-          echo Building...
-          yarn run build --prefix-paths --log-pages
-
-      - name: Upload built project
-        uses: actions/upload-artifact@v1
-        with:
-          name: public
-          path: public
-
-  deploy:
-    needs: build
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Dowload build files
-        uses: actions/download-artifact@v1
-        with:
-          name: public
-
-      - name: Install required packages
-        run: sudo apt install rsync
-
-      - name: Copy files
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          HOST: ${{ secrets.HOST }}
-          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
-        run: |
-          echo "$SSH_KEY" > /tmp/deploy_rsa
-          echo "$KNOWN_HOSTS" > /tmp/known_hosts
-          chmod 600 /tmp/deploy_rsa
-          chmod 644 /tmp/known_hosts
-          rsync -e 'ssh -i /tmp/deploy_rsa -o "UserKnownHostsFile=/tmp/known_hosts"' -a --delete public/ $USERNAME@$HOST:$REMOTE_PATH
+          vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.vercel-deployment.outputs.preview-url }}
