@@ -28,5 +28,6 @@ jobs:
           working-directory: ./
 
       - name: Build log
+        if: ${{ always() }}
         run: |
           vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.vercel-deployment.outputs.preview-url }}
