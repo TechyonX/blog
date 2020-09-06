@@ -25,3 +25,7 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}}
           vercel-project-id: ${{ secrets.PROJECT_ID}}
           working-directory: ./
+
+      - name: Build log
+        run: |
+          vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.now-deployment.outputs.preview-url }}
