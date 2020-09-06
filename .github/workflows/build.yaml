@@ -18,6 +18,7 @@ jobs:
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v19
+        id: vercel-deployment
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GH_TOKEN }}
@@ -28,4 +29,4 @@ jobs:
 
       - name: Build log
         run: |
-          vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.now-deployment.outputs.preview-url }}
+          vercel -t ${{ secrets.VERCEL_TOKEN }} logs ${{ steps.vercel-deployment.outputs.preview-url }}
