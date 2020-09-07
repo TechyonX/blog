@@ -27,6 +27,8 @@ type Post = {
   author: {
     id: number;
     username: string;
+    email: string;
+    full_name: string;
   };
   image: {
     childImageSharp: {
@@ -115,6 +117,8 @@ export const query = graphql`
       author {
         id
         username
+        email
+        full_name
       }
       created_at(formatString: "YYYY-MM-DD")
     }

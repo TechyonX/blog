@@ -9,6 +9,9 @@ type Post = {
   strapiId: number;
   slug: string;
   title: string;
+  excerpt: string;
+  tags: [{ id: number; slug: string; name: string }];
+  author: { id: number; username: string; email: string; full_name: string };
   image: {
     childImageSharp: {
       fluid: FluidObject;
@@ -20,7 +23,6 @@ type Tag = {
   strapiId: number;
   slug: string;
   name: string;
-  posts: [Post];
 };
 
 export default function Tag({
@@ -28,6 +30,9 @@ export default function Tag({
 }: {
   data: {
     strapiTag: Tag;
+    allStrapiPost: {
+      edges: [{ node: Post }];
+    };
   };
 }) {
   return (
@@ -36,11 +41,11 @@ export default function Tag({
         <div className="cell shrink">
           <h1>Тавтай морил!</h1>
           <p>Tag: {data.strapiTag.name}</p>
-          <h3>Нийтлэлүүд: {data.strapiTag.posts.length}</h3>
+          <h3>Нийтлэлүүд: {data.allStrapiPost.edges.length}</h3>
           <div className="grid-x">
-            {data.strapiTag.posts.map((post: Post) => {
-              post["strapiId"] = post.id;
-              return <PostCard post={post} key={post.strapiId} />;
+            {data.allStrapiPost.edges.map((post: { node: Post }) => {
+              post.node["strapiId"] = post.node.id;
+              return <PostCard post={post.node} key={post.node.strapiId} />;
             })}
           </div>
         </div>
@@ -51,22 +56,41 @@ export default function Tag({
 
 export const query = graphql`
   query tagAndPost($slug: String!) {
-    strapiTag(slug: { eq: $slug }) {
-      name
-      slug
-      strapiId
-      posts {
-        id
-        title
-        slug
-        image {
-          childImageSharp {
-            fluid(maxWidth: 480) {
-              ...GatsbyImageSharpFluid
+    allStrapiPost(
+      sort: { fields: publish_at, order: DESC }
+      filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
+    ) {
+      edges {
+        node {
+          strapiId
+          title
+          slug
+          excerpt
+          tags {
+            slug
+            name
+            id
+          }
+          author {
+            username
+            id
+            email
+            full_name
+          }
+          image {
+            childImageSharp {
+              fluid(maxWidth: 480) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
         }
       }
+    }
+    strapiTag(slug: { eq: $slug }) {
+      name
+      slug
+      strapiId
     }
   }
 `;

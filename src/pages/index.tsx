@@ -10,6 +10,7 @@ type Post = {
   title: string;
   excerpt: string;
   tags: [{ id: number; slug: string; name: string }];
+  author: { id: number; username: string; email: string; full_name: string };
   image: {
     childImageSharp: {
       fluid: FluidObject;
@@ -69,6 +70,12 @@ export const query = graphql`
             id
             name
             slug
+          }
+          author {
+            username
+            id
+            email
+            full_name
           }
           image {
             childImageSharp {
