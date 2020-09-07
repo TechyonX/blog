@@ -19,26 +19,19 @@ type Post = {
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <div className={`cell medium-6 large-4 ${style.postCard}`}>
-      {post.image ? (
-        <Link to={`/post/${post.slug}`} aria-label={post.title}>
-          <Img fluid={post.image.childImageSharp.fluid} />
-        </Link>
-      ) : null}
+    <Link
+      to={`/post/${post.slug}`}
+      aria-label={post.title}
+      className={`cell medium-6 large-4 ${style.postCard}`}
+    >
+      {post.image ? <Img fluid={post.image.childImageSharp.fluid} /> : null}
       <div className={style.postCardContent}>
-        {post.tags.length > 0 ? (
-          <Link
-            to={`/tag/${post.tags[0].slug}`}
-            className={`${style.postCardTag}`}
-          >
-            {post.tags[0].name}
-          </Link>
-        ) : null}
-        <Link to={`/post/${post.slug}`}>
-          <h4 className={style.postCardTitle}>{post.title}</h4>
-          <p className={style.postCardExcerpt}>{post.excerpt}</p>
-        </Link>
+        <p className={`${style.postCardTag}`}>
+          {post.tags.length > 0 ? post.tags[0].name : null}
+        </p>
+        <h4 className={style.postCardTitle}>{post.title}</h4>
+        <p className={style.postCardExcerpt}>{post.excerpt}</p>
       </div>
-    </div>
+    </Link>
   );
 }

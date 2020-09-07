@@ -1,21 +1,21 @@
 @import "../styles/global";
 
 .post-card {
-  border: 1px solid $black;
-  box-shadow: 4px 4px $black;
+  border: 1px solid $primary-text-color;
+  box-shadow: 4px 4px $primary-text-color;
 
   &-content {
     padding: 1rem;
   }
 
   &-title {
-    color: $body-font-color;
+    color: $primary-text-color;
     font-weight: 500;
     text-decoration: none;
   }
 
   &-excerpt {
-    color: $body-font-color;
+    color: $primary-text-color;
     text-decoration: none;
   }
 
