@@ -10,6 +10,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-head`,
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: "mn",
+      },
+    },
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-strapi`,

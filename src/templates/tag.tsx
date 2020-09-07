@@ -44,7 +44,6 @@ export default function Tag({
           <h3>Нийтлэлүүд: {data.allStrapiPost.edges.length}</h3>
           <div className="grid-x">
             {data.allStrapiPost.edges.map((post: { node: Post }) => {
-              post.node["strapiId"] = post.node.id;
               return <PostCard post={post.node} key={post.node.strapiId} />;
             })}
           </div>

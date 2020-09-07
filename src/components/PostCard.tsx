@@ -21,7 +21,7 @@ export default function PostCard({ post }: { post: Post }) {
   return (
     <div className={`cell medium-6 large-4 ${style.postCard}`}>
       {post.image ? (
-        <Link to={`/post/${post.slug}`}>
+        <Link to={`/post/${post.slug}`} aria-label={post.title}>
           <Img fluid={post.image.childImageSharp.fluid} />
         </Link>
       ) : null}
