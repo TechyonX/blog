@@ -37,21 +37,26 @@ export default function Author({
   };
 }) {
   return (
-    <Layout seoProps={{ title: "Нүүр хуудас" }}>
+    <Layout
+      seoProps={{
+        title: `${
+          data.strapiUser.full_name
+            ? data.strapiUser.full_name
+            : data.strapiUser.username
+        }`,
+      }}
+    >
       <main className="grid-container">
-        <div className="cell shrink">
-          <h1>Тавтай морил!</h1>
-          <p>
-            Нийтлэгч: {data.strapiUser.full_name}{" "}
-            <small>{data.strapiUser.username}</small>{" "}
-            {"<" + data.strapiUser.email + ">"}
-          </p>
-          <h3>Нийтлэлүүд: {data.allStrapiPost.edges.length}</h3>
-          <div className="grid-x">
-            {data.allStrapiPost.edges.map((post: { node: Post }) => {
-              return <PostCard post={post.node} key={post.node.strapiId} />;
-            })}
-          </div>
+        <h2>
+          {data.strapiUser.full_name
+            ? data.strapiUser.full_name
+            : data.strapiUser.username}
+        </h2>
+        <p>{data.allStrapiPost.edges.length} НИЙТЛЭЛ</p>
+        <div className="grid-x grid-margin-x grid-margin-y">
+          {data.allStrapiPost.edges.map((post: { node: Post }) => {
+            return <PostCard post={post.node} key={post.node.strapiId} />;
+          })}
         </div>
       </main>
     </Layout>
