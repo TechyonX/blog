@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import Seo, { SeoProps } from "./Seo";
 
 import logo from "../assets/images/black.png";
@@ -11,8 +12,11 @@ interface LayoutProps {
 
 function Header() {
   return (
-    <header className="cell">
-      <img src={logo} height="40px" width="auto" alt="TechyonX logo" />
+    <header className={`grid-y align-center ${style.headerContent}`}>
+      <Link to={`/`}>
+        <img src={logo} className={style.headerLogo} alt="TechyonX logo" />
+      </Link>
+      <p className={style.siteDescription}>Тавтай морил!</p>
     </header>
   );
 }

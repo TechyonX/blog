@@ -1,0 +1,26 @@
+@import "../styles/global";
+
+.post-card {
+  border: 1px solid $black;
+  box-shadow: 4px 4px $black;
+
+  &-content {
+    padding: 1rem;
+  }
+
+  &-title {
+    color: $body-font-color;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  &-excerpt {
+    color: $body-font-color;
+    text-decoration: none;
+  }
+
+  &-tag {
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}

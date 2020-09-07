@@ -1,13 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { FluidObject } from "gatsby-image";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import PostCard from "../components/PostCard";
 
 type Post = {
   strapiId: number;
   slug: string;
   title: string;
+  excerpt: string;
+  tags: [{ id: number; slug: string; name: string }];
   image: {
     childImageSharp: {
       fluid: FluidObject;
@@ -44,25 +46,10 @@ export default function Home({
   return (
     <Layout seoProps={{ title: "Нүүр хуудас" }}>
       <main className="grid-container">
-        <div className="cell shrink">
-          <h1>Тавтай морил!</h1>
-          <h3>Нийтлэлүүд:</h3>
-          <div className="grid-x">
-            {data.allStrapiPost.edges.map((post: { node: Post }) => {
-              return <PostCard post={post.node} key={post.node.strapiId} />;
-            })}
-          </div>
-
-          <h3>Төрлүүд:</h3>
-          <ul>
-            {data.allStrapiTag.edges.map((tag: { node: Tag }) => {
-              return (
-                <li key={tag.node.strapiId}>
-                  <Link to={`/tag/${tag.node.slug}`}>{tag.node.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="grid-x grid-margin-x grid-margin-y">
+          {data.allStrapiPost.edges.map((post: { node: Post }) => {
+            return <PostCard post={post.node} key={post.node.strapiId} />;
+          })}
         </div>
       </main>
     </Layout>
@@ -71,12 +58,18 @@ export default function Home({
 
 export const query = graphql`
   query {
-    allStrapiPost {
+    allStrapiPost(sort: { fields: publish_at, order: DESC }) {
       edges {
         node {
           strapiId
           title
+          excerpt
           slug
+          tags {
+            id
+            name
+            slug
+          }
           image {
             childImageSharp {
               fluid(maxWidth: 480) {
