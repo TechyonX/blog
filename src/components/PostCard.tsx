@@ -1,25 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
-import Img, { FluidObject } from "gatsby-image";
+import Img from "gatsby-image";
 import style from "./PostCard.module.scss";
-
-type Post = {
-  strapiId: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  publish_at: Date;
-  tags: [{ id: number; slug: string; name: string }];
-  author: { id: number; username: string; email: string; full_name: string };
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-  childMdx: {
-    timeToRead: number;
-  };
-};
+import { Post } from "../utils/types";
 
 export default function PostCard({ post }: { post: Post }) {
   return (

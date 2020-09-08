@@ -1,39 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { FluidObject } from "gatsby-image";
 import { graphql } from "gatsby";
-import PostCard from "../components/PostCard";
-
-type Post = {
-  id: number;
-  strapiId: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  tags: [{ id: number; slug: string; name: string }];
-  author: { id: number; username: string; email: string; full_name: string };
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-};
-
-type Author = {
-  strapiId: number;
-  username: string;
-  email: string;
-  full_name: string;
-};
+import PostList from "../components/PostList";
+import { Post, Author as AuthorType } from "../utils/types";
 
 export default function Author({
   data,
 }: {
   data: {
-    allStrapiPost: {
-      edges: [{ node: Post }];
-    };
-    strapiUser: Author;
+    allPost: { edges: [{ node: Post }] };
+    strapiUser: AuthorType;
   };
 }) {
   return (
@@ -52,12 +28,8 @@ export default function Author({
             ? data.strapiUser.full_name
             : data.strapiUser.username}
         </h2>
-        <p>{data.allStrapiPost.edges.length} НИЙТЛЭЛ</p>
-        <div className="grid-x grid-margin-x grid-margin-y">
-          {data.allStrapiPost.edges.map((post: { node: Post }) => {
-            return <PostCard post={post.node} key={post.node.strapiId} />;
-          })}
-        </div>
+        <p>{data.allPost.edges.length} НИЙТЛЭЛ</p>
+        <PostList posts={data.allPost.edges} />
       </main>
     </Layout>
   );
@@ -65,42 +37,18 @@ export default function Author({
 
 export const query = graphql`
   query authorAndPost($username: String!) {
-    allStrapiPost(
+    allPost(
       sort: { fields: publish_at, order: DESC }
       filter: { author: { username: { eq: $username } } }
     ) {
       edges {
         node {
-          strapiId
-          title
-          slug
-          excerpt
-          tags {
-            slug
-            name
-            id
-          }
-          author {
-            username
-            id
-            email
-            full_name
-          }
-          image {
-            childImageSharp {
-              fluid(maxWidth: 480) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+          ...postFields
         }
       }
     }
     strapiUser(username: { eq: $username }) {
-      email
-      strapiId
-      username
-      full_name
+      ...userFields
     }
   }
 `;

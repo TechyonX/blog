@@ -1,45 +1,17 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { Link } from "gatsby";
-import Img, { FluidObject } from "gatsby-image";
+import Img from "gatsby-image";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import style from "./Post.module.scss";
-
-type Post = {
-  strapiId: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  publish_at: Date;
-  content: string;
-  status: string;
-  childMdx: {
-    body: string;
-    tableOfContents: {
-      items: [{ url: string; title: string }];
-    };
-    timeToRead: number;
-  };
-  author: {
-    id: number;
-    username: string;
-    email: string;
-    full_name: string;
-  };
-  tags: [{ id: number; name: string; slug: string }];
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-};
+import { Post as PostType } from "../utils/types";
 
 function TestComponent() {
   return <code>Hello World!</code>;
 }
 
-function PostHeader({ post }: { post: Post }) {
+function PostHeader({ post }: { post: PostType }) {
   return (
     <div className={style.postHeader}>
       <div className={style.postInfo}>
@@ -74,7 +46,7 @@ function PostHeader({ post }: { post: Post }) {
   );
 }
 
-export default function Post({ post }: { post: Post }) {
+export default function Post({ post }: { post: PostType }) {
   const toc = post.childMdx.tableOfContents;
   return (
     <Layout>
