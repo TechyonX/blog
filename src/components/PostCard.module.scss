@@ -5,11 +5,17 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
 .post-card {
   border: 1px solid $dark;
   box-shadow: 4px 4px $dark;
-  transition: 0.08s ease;
+  transition: 0.1s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     box-shadow: 8px 8px $dark;
     margin: (-1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (-1+$grid-margin-gutter-half);
+  }
+
+  &:active {
+    box-shadow: 1px 1px $dark;
+    margin: $grid-margin-gutter-half;
   }
 
   &-image {
@@ -48,6 +54,7 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
   }
 
   &-author {
+    color: $darker;
     font-size: $small-font-size;
     font-weight: 500;
     margin-bottom: 0;
@@ -55,6 +62,7 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
   }
 
   &-date {
+    color: $dark-gray;
     font-size: $small-font-size;
     text-transform: uppercase;
   }

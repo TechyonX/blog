@@ -21,10 +21,11 @@
 
   &-excerpt {
     color: $darker;
-    font-size: 1.1*$global-font-size;
+    font-size: 1.05*$global-font-size;
   }
 
   &-author {
+    color: $darker;
     font-size: $small-font-size;
     font-weight: 500;
     margin-bottom: 0;
@@ -32,7 +33,7 @@
   }
 
   &-date-and-time-to-read {
-    color: $darker;
+    color: $dark-gray;
     font-size: $small-font-size;
     text-transform: uppercase;
   }

@@ -6,42 +6,38 @@ import { Post } from "../utils/types";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <article className={`cell medium-6 large-4 ${style.postCard}`}>
+    <Link
+      to={`/post/${post.slug}`}
+      aria-label={post.title}
+      className={`cell medium-6 large-4 ${style.postCard}`}
+    >
       {post.image ? (
-        <Link to={`/post/${post.slug}`} aria-label={post.title}>
-          <Img
-            fluid={post.image.childImageSharp.fluid}
-            className={style.postCardImage}
-          />
-        </Link>
+        <Img
+          fluid={post.image.childImageSharp.fluid}
+          className={style.postCardImage}
+        />
       ) : null}
 
-      <Link to={`/post/${post.slug}`} aria-label={post.title}>
-        <div className={style.postCardContent}>
-          <p className={`${style.postCardTag}`}>
-            {post.tags.length > 0 ? post.tags[0].name : null}
-          </p>
-          <h4 className={style.postCardTitle}>{post.title}</h4>
-          <p className={style.postCardExcerpt}>{post.excerpt}</p>
-        </div>
-      </Link>
+      <div className={style.postCardContent}>
+        <p className={`${style.postCardTag}`}>
+          {post.tags.length > 0 ? post.tags[0].name : null}
+        </p>
+        <h4 className={style.postCardTitle}>{post.title}</h4>
+        <p className={style.postCardExcerpt}>{post.excerpt}</p>
+      </div>
       <div className={style.postCardMeta}>
         <p className={style.postCardAuthor}>
-          {post.author ? (
-            <Link to={`/author/${post.author.username}`}>
-              {post.author.full_name
-                ? post.author.full_name
-                : post.author.username}
-            </Link>
-          ) : (
-            "Байхгүй"
-          )}
+          {post.author
+            ? post.author.full_name
+              ? post.author.full_name
+              : post.author.username
+            : "Байхгүй"}
         </p>
         <p className={style.postCardDate}>
           {post.publish_at} •{" "}
           {post.childMdx.timeToRead ? post.childMdx.timeToRead : 0} мин
         </p>
       </div>
-    </article>
+    </Link>
   );
 }
