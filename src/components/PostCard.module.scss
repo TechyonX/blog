@@ -1,8 +1,16 @@
 @import "../styles/global";
 
+$grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
+
 .post-card {
-  border: 1px solid $primary-text-color;
-  box-shadow: 4px 4px $primary-text-color;
+  border: 1px solid $dark;
+  box-shadow: 4px 4px $dark;
+  transition: 0.08s ease;
+
+  &:hover {
+    box-shadow: 8px 8px $dark;
+    margin: (-1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (-1+$grid-margin-gutter-half);
+  }
 
   &-content {
     padding: 1rem;
