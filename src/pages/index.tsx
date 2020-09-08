@@ -9,6 +9,8 @@ type Post = {
   slug: string;
   title: string;
   excerpt: string;
+  publish_at: Date;
+  childMdx: { timeToRead: number };
   tags: [{ id: number; slug: string; name: string }];
   author: { id: number; username: string; email: string; full_name: string };
   image: {
@@ -28,7 +30,7 @@ export default function Home({
   data,
 }: {
   data: {
-    allStrapiPost: {
+    allPost: {
       edges: [
         {
           node: Post;
@@ -48,7 +50,7 @@ export default function Home({
     <Layout seoProps={{ title: "Нүүр хуудас" }}>
       <main className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y">
-          {data.allStrapiPost.edges.map((post: { node: Post }) => {
+          {data.allPost.edges.map((post: { node: Post }) => {
             return <PostCard post={post.node} key={post.node.strapiId} />;
           })}
         </div>
@@ -59,17 +61,21 @@ export default function Home({
 
 export const query = graphql`
   query {
-    allStrapiPost(sort: { fields: publish_at, order: DESC }) {
+    allPost(sort: { fields: publish_at, order: DESC }) {
       edges {
         node {
           strapiId
           title
           excerpt
           slug
+          publish_at(formatString: "YYYY/MM/DD")
           tags {
             id
             name
             slug
+          }
+          childMdx {
+            timeToRead
           }
           author {
             username

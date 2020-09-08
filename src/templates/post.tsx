@@ -53,11 +53,6 @@ export const query = graphql`
         body
         tableOfContents
         timeToRead
-        wordCount {
-          paragraphs
-          sentences
-          words
-        }
       }
       image {
         childImageSharp {

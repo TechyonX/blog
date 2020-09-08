@@ -20,11 +20,6 @@ type Post = {
       items: [{ url: string; title: string }];
     };
     timeToRead: number;
-    wordCount: {
-      paragraphs: number;
-      sentences: number;
-      words: number;
-    };
   };
   author: {
     id: number;

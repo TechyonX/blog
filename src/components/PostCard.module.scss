@@ -12,8 +12,13 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
     margin: (-1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (-1+$grid-margin-gutter-half);
   }
 
+  &-image {
+    height: 200px;
+    width: 100%;
+  }
+
   &-content {
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem;
   }
 
   &-title {
@@ -24,6 +29,7 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
 
   &-excerpt {
     color: $darker;
+    font-size: $global-font-size*0.83;
     margin-bottom: 0;
     text-decoration: none;
   }
@@ -34,6 +40,22 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
     font-weight: 500;
     margin-bottom: 0;
     text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &-meta {
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  &-author {
+    font-size: $small-font-size;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &-date {
+    font-size: $small-font-size;
     text-transform: uppercase;
   }
 }
