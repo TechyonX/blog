@@ -16,6 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create .npmrc file
+        run: |
+          echo ${{ secrets.NPMRC }} > .npmrc
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v19
         id: vercel-deployment
