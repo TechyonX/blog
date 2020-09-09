@@ -11,6 +11,7 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
   &:focus {
     box-shadow: 8px 8px $dark;
     margin: (-1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (-1+$grid-margin-gutter-half);
+    outline: none;
   }
 
   &:active {

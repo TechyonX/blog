@@ -52,7 +52,7 @@ export default function Post({ post }: { post: PostType }) {
     <Layout>
       <main className="grid-container">
         <div className="grid-x">
-          <div className="cell auto">
+          <article className="cell auto">
             <PostHeader post={post} />
             {Object.keys(toc).length > 0 ? (
               <ul>
@@ -65,10 +65,12 @@ export default function Post({ post }: { post: PostType }) {
                 ))}
               </ul>
             ) : null}
-            <MDXProvider components={{ TestComponent }}>
-              <MDXRenderer>{post.childMdx.body}</MDXRenderer>
-            </MDXProvider>
-          </div>
+            <section className={style.postContent}>
+              <MDXProvider components={{ TestComponent }}>
+                <MDXRenderer>{post.childMdx.body}</MDXRenderer>
+              </MDXProvider>
+            </section>
+          </article>
         </div>
       </main>
     </Layout>
