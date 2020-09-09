@@ -29,6 +29,9 @@
     "*.scss": "yarn lint-style"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/pro-regular-svg-icons": "https://github.com/TechyonX/fontawesome-npm-packages.git#regular",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "gatsby": "^2.23.7",
