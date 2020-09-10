@@ -2573,6 +2573,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@techyonx/pro-brands-svg-icons@^5.14.0":
+  version "5.14.0"
+  resolved "https://npm.pkg.github.com/download/@techyonx/pro-brands-svg-icons/5.14.0/77ff01187986203bf7148b505a03bd9a920b12d28993fc789630d2042ccec6bf#e1f3d18aa0f5326dd13411350f943a7703903d5a"
+  integrity sha512-06PFZD+Nan8ghqDvj3kFzSZJEUyvK0cRvDkx1loWNHSsS+0ooRe8+QoWGLXG6k92vUmJeFxU09Jc2aqqnXUbQQ==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.30"
+
 "@techyonx/pro-regular-svg-icons@^5.14.0":
   version "5.14.0"
   resolved "https://npm.pkg.github.com/download/@techyonx/pro-regular-svg-icons/5.14.0/d518119f5534f636821388aabb6cb7fa42a79b3dc561567bd872a893d203a43f#91adb5614573026fc48730efad5a821dbcdcb876"
