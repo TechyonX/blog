@@ -68,4 +68,48 @@ h6 {
   width: 100%;
 }
 
+/* For autolink headers */
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:hover {
+    .post-content-header-link {
+      color: $darker;
+    }
+  }
+}
+
+.post-content-header-link {
+  &:hover,
+  &:focus {
+    color: $darker;
+  }
+
+  &:active {
+    color: $dark;
+  }
+  @include breakpoint(large up) {
+    color: $light-gray;
+    font-size: 0.8em;
+    margin-left: -1.4em;
+    margin-right: 0.4em;
+  }
+  @include breakpoint(medium down) {
+    color: $light-gray;
+    font-size: 0.8em;
+    margin-right: 0.2em;
+  }
+}
+
 @include foundation-everything;

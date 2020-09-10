@@ -39,6 +39,8 @@
   }
 
   &-content {
-    padding: 0 9rem 3rem;
+    @include breakpoint(large up) {
+      padding: 0 9rem 3rem;
+    }
   }
 }
