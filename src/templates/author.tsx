@@ -23,12 +23,15 @@ export default function Author({
       }}
     >
       <main className="grid-container">
-        <h2>
-          {data.strapiUser.full_name
-            ? data.strapiUser.full_name
-            : data.strapiUser.username}
-        </h2>
-        <p>{data.allPost.edges.length} НИЙТЛЭЛ</p>
+        <div className="page-header">
+          <h2 className="page-header-title">
+            {data.strapiUser.full_name
+              ? data.strapiUser.full_name
+              : data.strapiUser.username}
+          </h2>
+          <p className="subheader">{data.allPost.edges.length} НИЙТЛЭЛ</p>
+          <hr />
+        </div>
         <PostList posts={data.allPost.edges} />
       </main>
     </Layout>

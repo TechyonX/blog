@@ -12,11 +12,20 @@ export default function Tag({
     allPost: { edges: [{ node: Post }] };
   };
 }) {
+  console.log(data.strapiTag);
   return (
-    <Layout seoProps={{ title: `${data.strapiTag.name}` }}>
+    <Layout
+      seoProps={{
+        title: `${data.strapiTag.name}`,
+        desc: data.strapiTag.description,
+      }}
+    >
       <main className="grid-container">
-        <h2>{data.strapiTag.name}</h2>
-        <p>{data.allPost.edges.length} НИЙТЛЭЛ</p>
+        <div className="page-header">
+          <h2 className="page-header-title">{data.strapiTag.name}</h2>
+          <p className="subheader">{data.strapiTag.description}</p>
+          <hr />
+        </div>
         <PostList posts={data.allPost.edges} />
       </main>
     </Layout>
@@ -37,6 +46,7 @@ export const query = graphql`
     }
     strapiTag(slug: { eq: $slug }) {
       ...tagFields
+      description
     }
   }
 `;

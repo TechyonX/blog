@@ -35,6 +35,8 @@ export const postFields = graphql`
       id
       name
       slug
+      description
+      description
     }
   }
 `;

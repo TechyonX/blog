@@ -40,7 +40,7 @@
 
   &-content {
     @include breakpoint(large up) {
-      padding: 0 9rem 3rem;
+      padding: 0 9rem 1rem;
     }
   }
 }

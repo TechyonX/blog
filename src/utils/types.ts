@@ -37,6 +37,7 @@ export type Tag = {
   strapiId: number;
   slug: string;
   name: string;
+  description: string;
 };
 
 export type Author = {

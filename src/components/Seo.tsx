@@ -30,7 +30,10 @@ export default function Seo({
       <Link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       <Meta property="og:title" content={`${title} - TechyonX`} />
       <Meta property="og:type" content={type} />
-      <Meta property="og:description" content={desc} />
+      <Meta
+        property="og:description"
+        content={desc !== null ? desc : "Шинжлэх ухаан, технологийн блог."}
+      />
       <Meta property="og:url" content={location.href} />
       <Meta
         property="og:image"
