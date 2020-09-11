@@ -16,7 +16,7 @@ function Header() {
       <Link to={`/`}>
         <img src={logo} className={style.headerLogo} alt="TechyonX logo" />
       </Link>
-      <p className={style.siteDescription}>Тавтай морил!</p>
+      <p className={style.siteDescription}>Шинжлэх ухаан, технологийн блог.</p>
     </header>
   );
 }
