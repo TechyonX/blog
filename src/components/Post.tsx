@@ -47,24 +47,12 @@ function PostHeader({ post }: { post: PostType }) {
 }
 
 export default function Post({ post }: { post: PostType }) {
-  const toc = post.childMdx.tableOfContents;
   return (
     <Layout>
       <main className="grid-container">
         <div className="grid-x">
           <article className="cell auto">
             <PostHeader post={post} />
-            {Object.keys(toc).length > 0 ? (
-              <ul>
-                {toc.items.map(i => (
-                  <li key={i.url}>
-                    <a href={i.url} key={i.url}>
-                      {i.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
             <section className={style.postContent}>
               <MDXProvider components={{ TestComponent }}>
                 <MDXRenderer>{post.childMdx.body}</MDXRenderer>
