@@ -21,7 +21,8 @@ export default function Seo({
   image,
   desc = "Шинжлэх ухаан, технологийн блог.",
 }: SeoProps) {
-  const { href, origin } = useLocation();
+  const location = useLocation();
+  console.log(useLocation());
   return (
     <>
       <Title>{title} - TechyonX</Title>
@@ -31,8 +32,13 @@ export default function Seo({
       <Meta property="og:title" content={`${title} - TechyonX`} />
       <Meta property="og:type" content={type} />
       <Meta property="og:description" content={desc} />
-      <Meta property="og:url" content={href} />
-      <Meta property="og:image" content={origin + (image?.url || special)} />
+      <Meta property="og:url" content={location.href} />
+      <Meta
+        property="og:image"
+        content={
+          location.protocol + "//" + location.host + (image?.url || special)
+        }
+      />
       <Meta property="og:image:alt" content={title} />
       <Meta property="og:image:width" content={`${image?.width || 460}`} />
       <Meta property="og:image:height" content={`${image?.height || 460}`} />
