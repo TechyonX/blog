@@ -23,9 +23,9 @@ code[class*="language-"] {
   margin: 1em 0;
   padding: 1em;
   overflow: auto;
-  border: 1px solid #212121;
+  border: 1px solid #ba7;
   border-radius: 0;
-  box-shadow: 4px 4px #212121;
+  /* box-shadow: 1px 1px #212121; */
 }
 
 .gatsby-highlight pre[class*="language-"] {
