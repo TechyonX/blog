@@ -20,10 +20,12 @@ code[class*="language-"] {
 
 .gatsby-highlight {
   background-color: #fdf6e3;
-  border-radius: 0.3em;
-  margin: 0.5em 0;
+  margin: 1em 0;
   padding: 1em;
   overflow: auto;
+  border: 1px solid #212121;
+  border-radius: 0;
+  box-shadow: 4px 4px #212121;
 }
 
 .gatsby-highlight pre[class*="language-"] {
@@ -33,18 +35,6 @@ code[class*="language-"] {
   overflow: initial;
   float: left;
   min-width: 100%;
-}
-
-.gatsby-highlight pre[class*="language-"].line-numbers {
-  padding-left: 2.8em;
-}
-
-.gatsby-highlight {
-  background-color: #fdf6e3;
-  border-radius: 0.3em;
-  margin: 0.5em 0;
-  padding: 1em;
-  overflow: auto;
 }
 
 .gatsby-highlight pre[class*="language-"].line-numbers {
@@ -73,14 +63,6 @@ code[class*="language-"] {
 
 .command-line-prompt > span[data-user="root"]:before {
   content: "#";
-}
-
-.gatsby-highlight {
-  background-color: #fdf6e3;
-  border-radius: 0.3em;
-  margin: 0.5em 0;
-  padding: 1em;
-  overflow: auto;
 }
 
 /** 
