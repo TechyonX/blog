@@ -53,11 +53,14 @@ export default function Post({ post }: { post: PostType }) {
         type: "article",
         title: post.title,
         desc: post.excerpt,
-        image: {
-          url: post.image.childImageSharp.fixed.src,
-          height: post.image.childImageSharp.fixed.height,
-          width: post.image.childImageSharp.fixed.width,
-        },
+        image:
+          post.image !== null
+            ? {
+                url: post.image.childImageSharp.fixed.src,
+                height: post.image.childImageSharp.fixed.height,
+                width: post.image.childImageSharp.fixed.width,
+              }
+            : null,
       }}
     >
       <main className="grid-container">
