@@ -19,8 +19,8 @@
 // 1. Global
 // ---------
 
-$global-font-size: 100%;
-$global-width: rem-calc(1460);
+$global-font-size: 120%;
+$global-width: rem-calc(1180);
 $global-lineheight: 1.5;
 $foundation-palette: (
   primary: #1779ba,
@@ -32,6 +32,8 @@ $foundation-palette: (
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
+$darker: #444;
+$dark: #212121;
 $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
@@ -43,6 +45,7 @@ $global-margin: 1rem;
 $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
+$global-weight-medium: 500;
 $global-weight-bold: bold;
 $global-radius: 0;
 $global-menu-padding: 0.7rem 1rem;
@@ -74,7 +77,7 @@ $breakpoint-classes: (small medium large xlarge xxlarge);
 // ------------------
 
 $header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
+$header-font-weight: $global-weight-medium;
 $header-font-style: normal;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 $header-color: inherit;
@@ -83,19 +86,19 @@ $header-margin-bottom: 0.5rem;
 $header-styles: (
   small: (
     "h1": (
-      "font-size": 24,
+      "font-size": 32,
     ),
     "h2": (
-      "font-size": 20,
+      "font-size": 28,
     ),
     "h3": (
-      "font-size": 19,
+      "font-size": 25,
     ),
     "h4": (
-      "font-size": 18,
+      "font-size": 22,
     ),
     "h5": (
-      "font-size": 17,
+      "font-size": 20,
     ),
     "h6": (
       "font-size": 16,
@@ -253,8 +256,8 @@ $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
-  small: 16px,
-  medium: 16px,
+  small: 24px,
+  medium: 24px,
 );
 $grid-padding-gutters: 16px;
 $grid-container-padding: 60px;

@@ -1,52 +1,38 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { FluidObject } from "gatsby-image";
 import { graphql } from "gatsby";
-import PostCard from "../components/PostCard";
-
-type Post = {
-  id: number;
-  strapiId: number;
-  slug: string;
-  title: string;
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-};
-
-type Author = {
-  strapiId: number;
-  username: string;
-  email: string;
-  posts: [Post];
-};
+import PostList from "../components/PostList";
+import { Post, Author as AuthorType } from "../utils/types";
 
 export default function Author({
   data,
 }: {
   data: {
-    strapiUser: Author;
+    allPost: { edges: [{ node: Post }] };
+    strapiUser: AuthorType;
   };
 }) {
   return (
-    <Layout seoProps={{ title: "Нүүр хуудас" }}>
+    <Layout
+      seoProps={{
+        title: `${
+          data.strapiUser.full_name
+            ? data.strapiUser.full_name
+            : data.strapiUser.username
+        }`,
+      }}
+    >
       <main className="grid-container">
-        <div className="cell shrink">
-          <h1>Тавтай морил!</h1>
-          <p>
-            Нийтлэгч: {data.strapiUser.username}{" "}
-            {"<" + data.strapiUser.email + ">"}
-          </p>
-          <h3>Нийтлэлүүд: {data.strapiUser.posts.length}</h3>
-          <div className="grid-x">
-            {data.strapiUser.posts.map((post: Post) => {
-              post["strapiId"] = post.id;
-              return <PostCard post={post} key={post.id} />;
-            })}
-          </div>
+        <div className="page-header">
+          <h2 className="page-header-title">
+            {data.strapiUser.full_name
+              ? data.strapiUser.full_name
+              : data.strapiUser.username}
+          </h2>
+          <p className="subheader">{data.allPost.edges.length} НИЙТЛЭЛ</p>
+          <hr />
         </div>
+        <PostList posts={data.allPost.edges} />
       </main>
     </Layout>
   );
@@ -54,22 +40,18 @@ export default function Author({
 
 export const query = graphql`
   query authorAndPost($username: String!) {
-    strapiUser(username: { eq: $username }) {
-      email
-      strapiId
-      username
-      posts {
-        id
-        title
-        slug
-        image {
-          childImageSharp {
-            fluid(maxWidth: 480) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+    allPost(
+      sort: { fields: publish_at, order: DESC }
+      filter: { author: { username: { eq: $username } } }
+    ) {
+      edges {
+        node {
+          ...postFields
         }
       }
+    }
+    strapiUser(username: { eq: $username }) {
+      ...userFields
     }
   }
 `;

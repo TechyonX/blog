@@ -64,8 +64,111 @@ h6 {
   box-sizing: inherit;
 }
 
-*:focus {
-  outline: none;
+@include foundation-everything;
+
+/**
+ * Override
+ */
+
+.grid-container {
+  width: 100%;
 }
 
-@include foundation-everything;
+/* For autolink headers */
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:hover {
+    .post-content-header-link {
+      color: $darker;
+    }
+  }
+}
+
+.post-content-header-link {
+  &:hover,
+  &:focus {
+    color: $darker;
+  }
+
+  &:active {
+    color: $dark;
+  }
+  @include breakpoint(large up) {
+    color: $light-gray;
+    font-size: 0.8em;
+    margin-left: -1.4em;
+    margin-right: 0.4em;
+  }
+  @include breakpoint(medium down) {
+    color: $light-gray;
+    font-size: 0.8em;
+    margin-right: 0.2em;
+  }
+}
+
+.page-header {
+  margin-bottom: 3rem;
+
+  &-title {
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  &-count {
+    color: $dark-gray;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .subheader {
+    color: $dark-gray;
+    line-height: 1;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.text-darker {
+  color: $darker;
+}
+
+blockquote {
+  border-left: 5px solid $primary-color;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+
+  p {
+    color: $primary-text-color;
+    font-style: italic;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

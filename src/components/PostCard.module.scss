@@ -1,0 +1,70 @@
+@import "../styles/global";
+
+$grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
+
+.post-card {
+  border: 1px solid $dark;
+  box-shadow: 4px 4px $dark;
+  transition: 0.1s ease;
+
+  &:hover,
+  &:focus {
+    box-shadow: 8px 8px $dark;
+    margin: (-1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (1+$grid-margin-gutter-half) (-1+$grid-margin-gutter-half);
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 1px 1px $dark;
+    margin: $grid-margin-gutter-half;
+  }
+
+  &-image {
+    height: 200px;
+    width: 100%;
+  }
+
+  &-content {
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  &-title {
+    color: $primary-text-color;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  &-excerpt {
+    color: $darker;
+    font-size: $global-font-size*0.83;
+    margin-bottom: 0;
+    text-decoration: none;
+  }
+
+  &-tag {
+    color: $primary-color;
+    font-size: $small-font-size;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &-meta {
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  &-author {
+    color: $darker;
+    font-size: $small-font-size;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &-date {
+    color: $dark-gray;
+    font-size: $small-font-size;
+    text-transform: uppercase;
+  }
+}

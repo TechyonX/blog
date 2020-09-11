@@ -4,11 +4,34 @@ footer,
 header {
   @include flex;
   @include flex-align(center, middle);
-  @include margin(1, null, 1, null);
+}
+
+footer {
+  @include margin(5, null, 1, null);
+}
+
+header {
+  background-color: $secondary-color;
+  @include margin(null, null, 2, null);
 }
 
 main {
   flex-grow: 1;
+}
+
+.header-content {
+  padding: 5vw 2vw 3vw;
+}
+
+.header-logo {
+  height: 6rem;
+  padding-bottom: 1rem;
+  width: auto;
+}
+
+.site-description {
+  font-size: 1.5rem;
+  font-weight: 100;
 }
 
 .content {

@@ -1,0 +1,46 @@
+@import "../styles/global";
+
+.post {
+  &-header {
+    margin-bottom: 3rem;
+  }
+
+  &-info {
+    margin-bottom: 3rem;
+  }
+
+  &-tag {
+    font-weight: 500;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &-title {
+    font-weight: 700;
+  }
+
+  &-excerpt {
+    color: $darker;
+    font-size: 1.05*$global-font-size;
+  }
+
+  &-author {
+    color: $darker;
+    font-size: $small-font-size;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &-date-and-time-to-read {
+    color: $dark-gray;
+    font-size: $small-font-size;
+    text-transform: uppercase;
+  }
+
+  &-content {
+    @include breakpoint(large up) {
+      padding: 0 9rem 1rem;
+    }
+  }
+}

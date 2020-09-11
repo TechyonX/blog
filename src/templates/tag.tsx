@@ -1,49 +1,32 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { FluidObject } from "gatsby-image";
 import { graphql } from "gatsby";
-import PostCard from "../components/PostCard";
-
-type Post = {
-  id: number;
-  strapiId: number;
-  slug: string;
-  title: string;
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-};
-
-type Tag = {
-  strapiId: number;
-  slug: string;
-  name: string;
-  posts: [Post];
-};
+import PostList from "../components/PostList";
+import { Post, Tag as TagType } from "../utils/types";
 
 export default function Tag({
   data,
 }: {
   data: {
-    strapiTag: Tag;
+    strapiTag: TagType;
+    allPost: { edges: [{ node: Post }] };
   };
 }) {
+  console.log(data.strapiTag);
   return (
-    <Layout seoProps={{ title: "Нүүр хуудас" }}>
+    <Layout
+      seoProps={{
+        title: `${data.strapiTag.name}`,
+        desc: data.strapiTag.description,
+      }}
+    >
       <main className="grid-container">
-        <div className="cell shrink">
-          <h1>Тавтай морил!</h1>
-          <p>Tag: {data.strapiTag.name}</p>
-          <h3>Нийтлэлүүд: {data.strapiTag.posts.length}</h3>
-          <div className="grid-x">
-            {data.strapiTag.posts.map((post: Post) => {
-              post["strapiId"] = post.id;
-              return <PostCard post={post} key={post.strapiId} />;
-            })}
-          </div>
+        <div className="page-header">
+          <h2 className="page-header-title">{data.strapiTag.name}</h2>
+          <p className="subheader">{data.strapiTag.description}</p>
+          <hr />
         </div>
+        <PostList posts={data.allPost.edges} />
       </main>
     </Layout>
   );
@@ -51,22 +34,19 @@ export default function Tag({
 
 export const query = graphql`
   query tagAndPost($slug: String!) {
-    strapiTag(slug: { eq: $slug }) {
-      name
-      slug
-      strapiId
-      posts {
-        id
-        title
-        slug
-        image {
-          childImageSharp {
-            fluid(maxWidth: 480) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+    allPost(
+      sort: { fields: publish_at, order: DESC }
+      filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
+    ) {
+      edges {
+        node {
+          ...postFields
         }
       }
+    }
+    strapiTag(slug: { eq: $slug }) {
+      ...tagFields
+      description
     }
   }
 `;
