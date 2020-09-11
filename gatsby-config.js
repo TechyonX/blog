@@ -42,6 +42,14 @@ module.exports = {
               className: `post-content-header-link`,
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              prompt: {
+                global: true,
+              },
+            },
+          },
         ],
       },
     },
