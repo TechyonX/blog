@@ -18,6 +18,11 @@ export const postFields = graphql`
         fluid(maxWidth: 960) {
           ...GatsbyImageSharpFluid
         }
+        fixed {
+          src
+          height
+          width
+        }
       }
     }
     author {

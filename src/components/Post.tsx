@@ -48,7 +48,18 @@ function PostHeader({ post }: { post: PostType }) {
 
 export default function Post({ post }: { post: PostType }) {
   return (
-    <Layout>
+    <Layout
+      seoProps={{
+        type: "article",
+        title: post.title,
+        desc: post.excerpt,
+        image: {
+          url: post.image.childImageSharp.fixed.src,
+          height: post.image.childImageSharp.fixed.height,
+          width: post.image.childImageSharp.fixed.width,
+        },
+      }}
+    >
       <main className="grid-container">
         <div className="grid-x">
           <article className="cell auto">

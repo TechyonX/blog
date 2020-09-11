@@ -24,6 +24,11 @@ export type Post = {
   image: {
     childImageSharp: {
       fluid: FluidObject;
+      fixed: {
+        src: string;
+        height: number;
+        width: number;
+      };
     };
   };
 };
