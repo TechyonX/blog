@@ -2,6 +2,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const path = require(`path`);
+
 module.exports = {
   siteMetadata: {
     title: `TechyonBlog by TechyonX`,
@@ -51,6 +53,13 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `assets`, `images`),
       },
     },
     `gatsby-transformer-sharp`,

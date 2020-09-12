@@ -12,7 +12,6 @@ export default function Tag({
     allPost: { edges: [{ node: Post }] };
   };
 }) {
-  console.log(data.strapiTag);
   return (
     <Layout
       seoProps={{

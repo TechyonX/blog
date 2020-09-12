@@ -63,7 +63,7 @@ $grid-margin-gutter-half: map-get($map: $grid-margin-gutters, $key: "medium")/2;
   }
 
   &-date {
-    color: $dark-gray;
+    color: $darker-gray;
     font-size: $small-font-size;
     text-transform: uppercase;
   }

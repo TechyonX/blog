@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
+import { StaticQuery, graphql } from "gatsby";
+import Img, { FixedObject } from "gatsby-image";
 import Seo, { SeoProps } from "./Seo";
-
-import logo from "../assets/images/black.png";
 import style from "./Layout.module.scss";
 
 interface LayoutProps {
@@ -12,12 +12,33 @@ interface LayoutProps {
 
 function Header() {
   return (
-    <header className={`grid-y align-center ${style.headerContent}`}>
-      <Link to={`/`}>
-        <img src={logo} className={style.headerLogo} alt="TechyonX logo" />
-      </Link>
-      <p className={style.siteDescription}>Шинжлэх ухаан, технологийн блог.</p>
-    </header>
+    <StaticQuery
+      query={graphql`
+        query {
+          file(relativePath: { eq: "black.png" }) {
+            childImageSharp {
+              fixed(width: 96, height: 96) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+        }
+      `}
+      render={(data: { file: { childImageSharp: { fixed: FixedObject } } }) => (
+        <header className={`grid-y align-center ${style.headerContent}`}>
+          <Link to={`/`}>
+            <Img
+              className={style.headerLogo}
+              fixed={data.file.childImageSharp.fixed}
+              alt="TechyonX logo"
+            />
+          </Link>
+          <p className={style.siteDescription}>
+            Шинжлэх ухаан, технологийн блог.
+          </p>
+        </header>
+      )}
+    />
   );
 }
 
