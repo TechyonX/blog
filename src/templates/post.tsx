@@ -10,7 +10,7 @@ export default function Post({ data }: { data: { post: PostType } }) {
 export const query = graphql`
   query Post($slug: String!) {
     post(slug: { eq: $slug }) {
-      ...postFields
+      ...postFieldsBigImage
     }
   }
 `;

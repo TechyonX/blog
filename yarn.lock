@@ -1831,25 +1831,6 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@fortawesome/fontawesome-common-types@^0.2.30":
-  version "0.2.30"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.30.tgz#2f1cc5b46bd76723be41d0013a8450c9ba92b777"
-  integrity sha512-TsRwpTuKwFNiPhk1UfKgw7zNPeV5RhNp2Uw3pws+9gDAkPGKrtjR1y2lI3SYn7+YzyfuNknflpBA1LRKjt7hMg==
-
-"@fortawesome/fontawesome-svg-core@^1.2.30":
-  version "1.2.30"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.30.tgz#f56dc6791861fe5d1af04fb8abddb94658c576db"
-  integrity sha512-E3sAXATKCSVnT17HYmZjjbcmwihrNOCkoU7dVMlasrcwiJAHxSKeZ+4WN5O+ElgO/FaYgJmASl8p9N7/B/RttA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
-
-"@fortawesome/react-fontawesome@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.11.tgz#c1a95a2bdb6a18fa97b355a563832e248bf6ef4a"
-  integrity sha512-sClfojasRifQKI0OPqTy8Ln8iIhnxR/Pv/hukBhWnBz9kQRmqi6JSH3nghlhAY7SUeIIM7B5/D2G8WjX0iepVg==
-  dependencies:
-    prop-types "^15.7.2"
-
 "@graphql-tools/code-file-loader@6.0.10":
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/@graphql-tools/code-file-loader/-/code-file-loader-6.0.10.tgz#aec52aac049806d3a4e20dbe671d2acad544f08a"
@@ -2572,20 +2553,6 @@
   integrity sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==
   dependencies:
     defer-to-connect "^1.0.1"
-
-"@techyonx/pro-brands-svg-icons@^5.14.0":
-  version "5.14.0"
-  resolved "https://npm.pkg.github.com/download/@techyonx/pro-brands-svg-icons/5.14.0/77ff01187986203bf7148b505a03bd9a920b12d28993fc789630d2042ccec6bf#e1f3d18aa0f5326dd13411350f943a7703903d5a"
-  integrity sha512-06PFZD+Nan8ghqDvj3kFzSZJEUyvK0cRvDkx1loWNHSsS+0ooRe8+QoWGLXG6k92vUmJeFxU09Jc2aqqnXUbQQ==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
-
-"@techyonx/pro-regular-svg-icons@^5.14.0":
-  version "5.14.0"
-  resolved "https://npm.pkg.github.com/download/@techyonx/pro-regular-svg-icons/5.14.0/d518119f5534f636821388aabb6cb7fa42a79b3dc561567bd872a893d203a43f#91adb5614573026fc48730efad5a821dbcdcb876"
-  integrity sha512-Ehrjyex3l8LbJaL3cAJ/xxIcaTtLh3HfP29BMxGedgT55wtG8/Tne0LvPfd5SxB+RhAPYs93VARQy3aPlKHMFw==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.30"
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
