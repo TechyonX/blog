@@ -73,11 +73,12 @@ module.exports = {
         background_color: `#222222`,
         theme_color: `#222222`,
         display: `standalone`,
-        icon: `src/assets/images/logo-white.png`,
+        icon: `src/assets/images/logo-circle-light.png`,
         theme_color_in_head: false,
         icon_options: {
           purpose: `maskable`,
         },
+        cache_busting_mode: "none",
       },
     },
     {
