@@ -75,6 +75,9 @@ module.exports = {
         display: `standalone`,
         icon: `src/assets/images/logo-white.png`,
         theme_color_in_head: false,
+        icon_options: {
+          purpose: `maskable`,
+        },
       },
     },
     {
