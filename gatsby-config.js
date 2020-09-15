@@ -64,5 +64,26 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `TechyonX`,
+        short_name: `TechyonX`,
+        start_url: `/`,
+        background_color: `#222222`,
+        theme_color: `#222222`,
+        display: `standalone`,
+        icon: `src/assets/images/white.png`,
+        theme_color_in_head: false,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-offline",
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/assets/images/*"],
+        },
+      },
+    },
   ],
 };

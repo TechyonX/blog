@@ -26,7 +26,7 @@ export default function Seo({
     <>
       <Title>{title} - TechyonX</Title>
       <Meta name="description" content={desc} />
-      <Meta name="theme-color" content="#000000" />
+      <Meta name="theme-color" content="#222222" />
       <Link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       <Meta property="og:title" content={`${title} - TechyonX`} />
       <Meta property="og:type" content={type} />
