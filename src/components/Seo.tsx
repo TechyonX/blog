@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Meta, Title } from "react-head";
-import favicon from "../assets/images/logo-white.png";
+import favicon from "../assets/images/logo-circle-light.png";
 import special from "../assets/images/logo-special.png";
 import { useLocation } from "@reach/router";
 

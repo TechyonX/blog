@@ -73,8 +73,9 @@ module.exports = {
         background_color: `#222222`,
         theme_color: `#222222`,
         display: `standalone`,
-        icon: `src/assets/images/logo-circle-light.png`,
         theme_color_in_head: false,
+        include_favicon: false,
+        icon: `src/assets/images/logo-icon.png`,
         icon_options: {
           purpose: `maskable`,
         },
