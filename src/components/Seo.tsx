@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Meta, Title } from "react-head";
-import favicon from "../assets/images/white.png";
-import special from "../assets/images/special.png";
+import favicon from "../assets/images/logo-white.png";
+import special from "../assets/images/logo-special.png";
 import { useLocation } from "@reach/router";
 
 export interface SeoProps {

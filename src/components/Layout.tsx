@@ -15,7 +15,7 @@ function Header() {
     <StaticQuery
       query={graphql`
         query {
-          file(relativePath: { eq: "black.png" }) {
+          file(relativePath: { eq: "logo-black.png" }) {
             childImageSharp {
               fixed(width: 96, height: 96) {
                 ...GatsbyImageSharpFixed
