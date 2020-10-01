@@ -41,7 +41,7 @@
     "gatsby-plugin-sharp": "^2.6.25",
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-images-anywhere": "^1.3.0",
-    "gatsby-remark-prismjs": "^3.5.11",
+    "gatsby-remark-prismjs": "^3.5.14",
     "gatsby-source-strapi": "^0.0.12",
     "gatsby-transformer-sharp": "^2.5.12",
     "prismjs": "^1.21.0",
