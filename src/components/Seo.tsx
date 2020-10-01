@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Meta, Title } from "react-head";
-import favicon from "../assets/images/white.png";
-import special from "../assets/images/special.png";
+import favicon from "../assets/images/logo-circle-light.png";
+import special from "../assets/images/logo-special.png";
 import { useLocation } from "@reach/router";
 
 export interface SeoProps {
@@ -26,7 +26,7 @@ export default function Seo({
     <>
       <Title>{title} - TechyonX</Title>
       <Meta name="description" content={desc} />
-      <Meta name="theme-color" content="#000000" />
+      <Meta name="theme-color" content="#222222" />
       <Link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       <Meta property="og:title" content={`${title} - TechyonX`} />
       <Meta property="og:type" content={type} />
