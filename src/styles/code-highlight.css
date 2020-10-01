@@ -1,31 +1,38 @@
+:not(pre)>code[class*=language-] {
+  background: #0F111A;
+  color: #c3cee3;
+}
 
 pre[class*="language-"],
 code[class*="language-"] {
   border: 0px;
-  background-color: transparent;
+  background-color: #0F111A;
+  padding: 0;
 }
 
 /** 
  * PrismJS - Line Highlight
  */
 .gatsby-highlight-code-line {
-  background-color: #feb;
+  background-color: #717CB450;
   display: block;
   margin-right: -1em;
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  border-left: 0.25em solid #f99;
+  border-left: 0.25em solid #717CB450;
 }
 
 .gatsby-highlight {
-  background-color: #fdf6e3;
+  background-color: #0F111A;
   margin: 1em 0;
   padding: 1em;
   overflow: auto;
-  border: 1px solid #ba7;
-  border-radius: 0;
-  /* box-shadow: 1px 1px #212121; */
+  border-radius: 3px;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 2px 4px 7px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 2px 4px 7px 0px rgba(0,0,0,0.3);
+  box-shadow: 2px 4px 7px 0px rgba(0,0,0,0.3);
 }
 
 .gatsby-highlight pre[class*="language-"] {
@@ -47,27 +54,27 @@ code[class*="language-"] {
  * PrismJS - Command Line Prompt
  */
 .command-line-prompt {
-  border-right: 0px;
+  border-right: 0px!important;
 }
 
 .command-line-prompt > span:before {
   color: #999;
-  content: " ";
+  content: " "!important;
   display: block;
   padding-right: 0;
 }
 
 .command-line-prompt > span[data-user]:before {
-  content: "$";
+  content: "$"!important;
 }
 
 .command-line-prompt > span[data-user="root"]:before {
-  content: "#";
+  content: "#"!important;
 }
 
 /** 
  * PrismJS - Line Numbers
  */
 .line-numbers .line-numbers-rows {
-  border-right: 1px solid #f0ebdf;
+  border-right: 1px solid #999;
 }

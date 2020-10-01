@@ -45,6 +45,7 @@
     "gatsby-source-strapi": "^0.0.12",
     "gatsby-transformer-sharp": "^2.5.12",
     "prismjs": "^1.21.0",
+    "prismjs-material-theme": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-head": "^3.3.0"
