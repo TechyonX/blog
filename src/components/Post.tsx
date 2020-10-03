@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Layout from "../components/Layout";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
@@ -6,6 +6,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import style from "./Post.module.scss";
 import { Post as PostType } from "../utils/types";
+import ReadingProgress from "./ReadingProgress";
 
 function TestComponent() {
   return <code>Hello World!</code>;
@@ -46,6 +47,21 @@ function PostHeader({ post }: { post: PostType }) {
   );
 }
 
+function PostSection({ post }: { post: PostType }) {
+  const target = useRef();
+  return (
+    <article className="cell auto" ref={target}>
+      <ReadingProgress target={target} />
+      <PostHeader post={post} />
+      <section className={style.postContent}>
+        <MDXProvider components={{ TestComponent }}>
+          <MDXRenderer>{post.childMdx.body}</MDXRenderer>
+        </MDXProvider>
+      </section>
+    </article>
+  );
+}
+
 export default function Post({ post }: { post: PostType }) {
   return (
     <Layout
@@ -65,14 +81,7 @@ export default function Post({ post }: { post: PostType }) {
     >
       <main className="grid-container">
         <div className="grid-x">
-          <article className="cell auto">
-            <PostHeader post={post} />
-            <section className={style.postContent}>
-              <MDXProvider components={{ TestComponent }}>
-                <MDXRenderer>{post.childMdx.body}</MDXRenderer>
-              </MDXProvider>
-            </section>
-          </article>
+          <PostSection post={post} />
         </div>
       </main>
     </Layout>
