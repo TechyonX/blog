@@ -6,7 +6,6 @@ export const postFields = graphql`
     strapiId
     title
     excerpt
-    status
     publish_at(formatString: "YYYY/MM/DD")
     childMdx {
       body
@@ -46,7 +45,6 @@ export const postFieldsBigImage = graphql`
     strapiId
     title
     excerpt
-    status
     publish_at(formatString: "YYYY/MM/DD")
     childMdx {
       body

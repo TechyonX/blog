@@ -6,7 +6,6 @@ export type Post = {
   title: string;
   excerpt: string;
   publish_at: Date;
-  status: string;
   childMdx: {
     body: string;
     tableOfContents: {
